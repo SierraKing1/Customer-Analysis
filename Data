@@ -1,0 +1,52 @@
+---Retrieve All Data
+SELECT *
+FROM `customer_data.Customer Spending Data`
+
+---Average Age of customers
+SELECT AVG(age) AS Avg_Age
+FROM `customer_data.Customer Spending Data`
+
+---Count of customers by gender
+SELECT gender, COUNT(*) AS Num_Customers
+FROM `customer_data.Customer Spending Data`
+GROUP BY gender;
+
+---Calculate the total spending by education level
+SELECT education, SUM(spending) AS Total_Spending
+FROM `customer_data.Customer Spending Data`
+GROUP BY education;
+
+---Highest Income
+SELECT MAX(income) AS Max_Income
+FROM `customer_data.Customer Spending Data`
+
+---average purchase frequency by country:
+SELECT country, AVG(purchase_frequency) AS Avg_Purchase_Frequency
+FROM `customer_data.Customer Spending Data`
+GROUP BY country;
+
+---Customers whose income is over 80000
+SELECT *
+FROM `customer_data.Customer Spending Data`
+WHERE income > 80000;
+
+---Total Spending by age group
+SELECT 
+  CASE 
+    WHEN age < 30 THEN 'Under 30'
+    WHEN age BETWEEN 30 AND 50 THEN '30-50'
+    ELSE 'Over 50'
+  END AS Age_Group,
+  SUM(spending) AS Total_Spending
+FROM `customer_data.Customer Spending Data`
+GROUP BY Age_Group;
+
+---the number of customers from each country
+SELECT country, COUNT(*) AS Num_Customers
+FROM `customer_data.Customer Spending Data`
+GROUP BY country;
+
+---Highest spending customer
+SELECT name, spending
+FROM `customer_data.Customer Spending Data`
+WHERE spending = (SELECT MAX(spending) FROM `customer_data.Customer Spending Data`);
